@@ -1,4 +1,4 @@
-const service = require("../../service");
+const service = require("../../service/contacts");
 
 const postContact = async (req, res, next) => {
   await service.createContact(req.body);

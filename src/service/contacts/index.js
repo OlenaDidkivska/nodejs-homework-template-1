@@ -1,5 +1,5 @@
-const Contact = require("./schemas/contacts");
-const { UpdateStatusError } = require("../helpers/errors");
+const Contact = require("../schemas/contacts");
+const { UpdateStatusError } = require("../../helpers/errors");
 
 const getAllContacts = async () => {
   return Contact.find({});

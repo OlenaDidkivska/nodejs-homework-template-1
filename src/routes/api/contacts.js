@@ -1,11 +1,14 @@
 const express = require("express");
 
+const { authMiddleware } = require("../../middlewares/validation/users/auth");
 const { tryCatchWrapper } = require("../../helpers");
 
-const validate = require("../../middlewares/validation");
+const validate = require("../../middlewares/validation/contacts");
 const ctrlContact = require("../../controllers/contacts");
 
 const router = new express.Router();
+
+router.use(authMiddleware);
 
 router.get("/", tryCatchWrapper(ctrlContact.getContacts));
 

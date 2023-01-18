@@ -1,4 +1,4 @@
-const service = require("../../service");
+const service = require("../../service/contacts");
 
 const updateStatus = async (req, res) => {
   const { id } = req.params;
