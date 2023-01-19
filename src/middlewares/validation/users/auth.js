@@ -2,8 +2,8 @@ const { Unauthorized } = require("../../../helpers/errors");
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
-  const [token] = req.headers["authorization"];
-
+  const [tokenType, token] = req.headers["authorization"].split(" ");
+  console.log(tokenType);
   if (!token) {
     next(new Unauthorized("Not authorized"));
   }
