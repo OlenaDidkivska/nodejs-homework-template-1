@@ -1,12 +1,13 @@
 const bcrypt = require("bcrypt");
-const { Unauthorized } = require("../../helpers/errors");
+const { Unauthorized } = require("../helpers/errors");
 const jwt = require("jsonwebtoken");
-const User = require("../schemas/auth");
+const User = require("./schemas/auth");
 
-const signup = async (email, password) => {
+const signup = async (email, password, subscription) => {
   const user = new User({
     email,
     password,
+    subscription
   });
   return user.save();
 };
@@ -24,29 +25,21 @@ const login = async (email, password) => {
 
   const token = jwt.sign(
     {
-      _id: user._id,
+      id: user._id,
+      email: user.email,
       createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
+      
     },
-    process.env.JWT_SECRET
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1h",
+    }
   );
 
   return token;
 };
 
-const logout = (body) => {
-  const { name, phone, email, favorite } = body;
-  return User.create({ name, phone, email, favorite });
-};
-
-const current = (id, body) => {
-  const { name, phone, email } = body;
-  return User.findByIdAndUpdate(id, { name, phone, email }, { new: true });
-};
-
 module.exports = {
   signup,
-  login,
-  logout,
-  current,
+  login
 };

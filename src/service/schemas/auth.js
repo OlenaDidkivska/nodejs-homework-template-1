@@ -22,10 +22,7 @@ const user = new Schema(
       type: String,
       default: null,
     },
-    owner: {
-      type: String,
-      ref: "user",
-    },
+    
   },
   {
     versionKey: false,

@@ -1,10 +1,11 @@
 const express = require("express");
 
-const { authMiddleware } = require("../../middlewares/validation/users/auth");
 const { tryCatchWrapper } = require("../../helpers");
+const { authMiddleware } = require("../../middlewares/validation/users/auth");
 
 const validate = require("../../middlewares/validation/contacts");
 const ctrlContact = require("../../controllers/contacts");
+
 
 const router = new express.Router();
 
