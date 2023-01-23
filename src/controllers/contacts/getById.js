@@ -1,11 +1,12 @@
-const service = require("../../service");
+const service = require("../../service/contactService");
 
 const getById = async (req, res) => {
-  const { id } = req.params;
-  const contact = await service.getContactById(id);
+  const { id: contactId } = req.params;
+  const {id: userId} = req.user;
+  const contact = await service.getContactById(userId, contactId);
 
   if (!contact) {
-    res.status(400).json({ message: "Not found" });
+    res.status(400).json({ message: `Not contact with id: ${contactId} found` });
     return;
   }
 

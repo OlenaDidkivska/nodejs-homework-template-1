@@ -19,6 +19,10 @@ const contact = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: String,
+      ref: 'contact',
+    }
   },
   {
     versionKey: false,
