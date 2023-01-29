@@ -17,9 +17,9 @@ const authMiddleware = async(req, res, next) => {
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET);
     
-    console.log(user);
     req.token = token;
     req.user = user;
+
     next();
   } catch (error) {
     next(new Unauthorized("Invalid token"));
