@@ -12,6 +12,13 @@ class UpdateStatusError extends NodejsHomeworkError {
   }
 }
 
+class BadRequest extends NodejsHomeworkError {
+  constructor(message) {
+    super(message);
+    this.status = 400;
+  }
+}
+
 class ValidationError extends NodejsHomeworkError {
   constructor(message) {
     super(message);
@@ -39,4 +46,5 @@ module.exports = {
   ValidationError,
   Conflict,
   Unauthorized,
+  BadRequest
 };
