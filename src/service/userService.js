@@ -39,5 +39,5 @@ const updateAvatar = async (id, avatarURL, filename, extension) => {
 
 module.exports = {
   current,
-  updateAvatar
+  updateAvatar,
 };

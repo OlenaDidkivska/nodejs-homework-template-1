@@ -7,8 +7,12 @@ const uploadMiddleware = require("../../middlewares/validation/users/uploadImage
 
 const userRouter = new express.Router();
 
+userRouter.get("/verify/:verificationToken", tryCatchWrapper(ctrlUser.verifyEmail))
+userRouter.post("/verify", tryCatchWrapper(ctrlUser.repeatVerifyEmail))
+
 userRouter.use(authMiddleware);
 userRouter.get("/current", tryCatchWrapper(ctrlUser.getCurrentUser));
 userRouter.patch("/avatars", uploadMiddleware.single("image"), tryCatchWrapper(ctrlUser.updateAvatar))
+
 
 module.exports = { userRouter };

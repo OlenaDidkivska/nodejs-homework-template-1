@@ -6,13 +6,14 @@ const { Unauthorized } = require("../helpers/errors");
 const User = require("./schemas/auth");
 
 
-const signup = async (email, password) => {
+const signup = async (email, password, verificationToken) => {
   const avatarURL = gravatar.url(email, {format:'jpg'});
 
   const user = new User({
     email,
     password,
-    avatarURL
+    avatarURL,
+    verificationToken
   });
 
   return user.save();
@@ -23,6 +24,10 @@ const login = async (email, password) => {
 
   if (!user) {
     throw new Unauthorized(`User with such an email ${email} does not found`);
+  }
+
+  if(!user.verify) {
+    throw new Unauthorized(`User email is not verify`);
   }
 
   if (!(await bcrypt.compare(password, user.password))) {

@@ -1,6 +1,5 @@
 const { Unauthorized } = require("../../../helpers/errors");
 const jwt = require("jsonwebtoken");
-// const service = require("../../../service/userService");
 
 const authMiddleware = async(req, res, next) => {
   const authHeader = req.headers["authorization"] || "";
