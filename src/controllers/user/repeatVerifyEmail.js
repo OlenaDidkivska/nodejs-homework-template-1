@@ -1,4 +1,3 @@
-const { v4 } = require("uuid");
 const { sendMail } = require("../../helpers");
 const { BadRequest } = require("../../helpers/errors");
 const User = require("../../service/schemas/auth");
